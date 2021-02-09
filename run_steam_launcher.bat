@@ -1,0 +1,1 @@
+C:\Python36\python.exe your\pathto\steam_colauncher.py
