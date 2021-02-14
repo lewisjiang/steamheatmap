@@ -230,17 +230,31 @@ class SteamStatistics:
 
 def main(o, logger):
     exit_code = 0
-    try:
-        ret = o.record_playtime_till_now()
-        if ret:
-            logger.debug("Recorded steam info successfully.")
+    retry_cnt = 5
+    sleep_time = 10
+    while retry_cnt > 0:
+        try:
+            ret = o.record_playtime_till_now()
+            if ret:
+                logger.debug("Recorded steam info successfully.")
+            else:
+                logger.debug("Recording failed.")
+        except requests.exceptions.ConnectionError as con_err:
+            retry_cnt -= 1
+            if retry_cnt > 0:
+                logger.warning("ConnectionError, %d retries left. Next attempt in %ds." % (retry_cnt, sleep_time))
+                logger.debug(o.privacy_masker(traceback.format_exc()))
+                time.sleep(sleep_time)
+            else:
+                logger.error(o.privacy_masker(str(con_err)))
+                exit_code = 1
+        except Exception as e1:
+            logger.error(o.privacy_masker(traceback.format_exc()))
+            exit_code = 1
+            break
         else:
-            logger.debug("Recording failed.")
-    except Exception as e1:
-        logger.error(o.privacy_masker(traceback.format_exc()))
-        exit_code = 1
-    else:
-        logger.info("Query finished cleanly.")
+            logger.info("Query finished cleanly.")
+            break
 
     return exit_code
 

@@ -109,7 +109,7 @@ MIT License.
 
 ### TODO
 - [ ] TODO: cannot rely on db filenames! Use userinfo table instead.
-- [ ] Mask steamkey and steamid in the log string for privacy.
+- [x] Mask steamkey and steamid in the log string for privacy.
 - [ ] Display heatmap in readme when I played enough.
 - [ ] Database optimization for high frequency queries. 
   - [ ] sparsify to hours for active apps, remove continuous blanks for inactive apps.
