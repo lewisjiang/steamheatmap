@@ -39,6 +39,8 @@ You can check the log file `./log/steam_record.log` to see if the whole thing wo
 
 ### Setup auto querying on Windows 10
 
+It is recommended to deploy auto querying on a PC that you use most frequently or runs 24/7, if a server is not available.
+
 #### Timed querying
 
 The idea is to use Windows 10 built-in task scheduler to run `steam_stat.py` periodically. 
@@ -46,7 +48,7 @@ The idea is to use Windows 10 built-in task scheduler to run `steam_stat.py` per
 A scheduled task `steam_rec.xml` is provided. To use it, 
 
 1. edit line 77, 78 within the `<Actions>` tag correctly in the `.xml` file. `pythonw.exe` is recommended as it won't prompt a terminal window.
-1. Type and choose your own Windows system account in the security options block, when interactively importing to the task scheduler. 
+1. Type and choose your own Windows system account in the security options block, when interactively [importing to the task scheduler](https://superuser.com/questions/485563/how-to-import-a-scheduled-task-from-an-xml-file). 
 
 You can adjust query frequency in the scheduler, up to once per minute.
 
@@ -54,7 +56,7 @@ Note: Since Steam does not provide play time on a daily basis, querying the tota
 
 #### Query at the launch of Steam
 
-It may be a good idea to record already played time before starting any game. To do this,
+It may be a good idea to record already played time before starting steam client. To do this,
 
 1. Edit the `steam_colauncher.py` file to ensure the path to `Steam.exe` is correct.
 1. Edit the batch file `run_steam_launcher.bat` to ensure the paths to python executable and script `steam_colauncher.py` are correct.
