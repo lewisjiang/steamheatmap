@@ -122,7 +122,7 @@ class SteamCalendarHeatMap:
                     if 0 <= idx < len(all_days):
                         daily_minutes[app[0]][idx] += playtime1
                     if 0 <= idx + 1 < len(all_days):
-                        daily_minutes[app[0]][idx + 1] += playtime_p1_p2 - playtime1
+                        daily_minutes[app[0]][idx + 1] += playtime_p1_p2 // 60 - playtime1
 
                 p1 = p2
 
