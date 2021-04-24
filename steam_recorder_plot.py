@@ -42,7 +42,7 @@ class SteamCalendarHeatMap:
 
     def query_daterange(self, y0, m0, d0, y1, m1, d1):
         beg_date = datetime.datetime(y0, m0, d0)
-        end_date = datetime.datetime(y1, m1, d1) + datetime.timedelta(days=1)
+        end_date = datetime.datetime(y1, m1, d1) + datetime.timedelta(days=1) - datetime.timedelta(seconds=1)
 
         beg_utc_ts = int((beg_date - self.local_over_utc).timestamp())
         end_utc_ts = int((end_date - self.local_over_utc).timestamp())
